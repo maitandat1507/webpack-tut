@@ -15,6 +15,16 @@ module.exports = {
     filename: 'bundle.js'
   },
 
+  // Loaders are one of the main features of Webpack. They apply certain transformations to our code.
+  // Let's add to webpack.config.js file new option module.rules.
+  // In this option we will say Webpack how exactly it should transform different types of files.
+  // @see: https://dev.to/pixelgoo/how-to-configure-webpack-from-scratch-for-a-basic-website-46a5
+  module: {
+    rules: [
+      //
+    ]
+  }
+
   // Default mode for Webpack is production.
   // Depending on mode Webpack will apply different things
   // on final bundle. For now we don't need production's JavaScript 
