@@ -21,7 +21,16 @@ module.exports = {
   // @see: https://dev.to/pixelgoo/how-to-configure-webpack-from-scratch-for-a-basic-website-46a5
   module: {
     rules: [
-      //
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
     ]
   }
 
