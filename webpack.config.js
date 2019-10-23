@@ -24,12 +24,38 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        use: {
+        use: { // Now you can place ES6 code inside your JavaScript modules safely!
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        // Apply rule for .sass, .scss or .css files
+        test: /\.(sc|sa|c)ss$/,
+
+        // Set loaders to transform files.
+        // (!) Loaders are applying from right to left
+        // (!!!) The first loader will be applied after others
+        use: [
+          {
+            // This loader resolves url() and @imports inside CSS
+            loader: "css-loader",
+          },
+          {
+            // Then we apply postCSS fixes like autoprefixer and minifying
+            loader: "postcss-loader",
+          },
+          {
+            // First we transform SASS to standard CSS
+            loader: "sass-loader",
+            options: {
+              implementation: require("sass")
+            }
+          }
+        ]
+        // From Now when Webpack meets <<import 'file.scss';>> in code it knows what to do!
       }
     ]
   }
